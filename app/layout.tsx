@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
+
+import Gnb from "./_components/layout/gnb";
+
 import localFont from "next/font/local";
 import "../src/css/globals.css";
+import Footer from "./_components/layout/footer";
+import { SessionProvider } from "next-auth/react";
 
 const geistSans = localFont({
   src: "../src/fonts/GeistVF.woff",
@@ -25,8 +30,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <div className="root">{children}</div>
+      <body className={`${geistSans.variable} ${geistMono.variable} body`}>
+        <div className="root">
+          <Gnb />
+          <div className="content-wrap">
+            {children}
+            <Footer />
+          </div>
+        </div>
       </body>
     </html>
   );

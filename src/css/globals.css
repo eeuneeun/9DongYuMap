@@ -35,6 +35,81 @@ a {
   text-decoration: none;
 }
 
+/* root settings */
+html,
+body,
+.body,
+.root {
+  width: 100%;
+  height: 100vh;
+  max-width: 768px;
+  min-width: 320px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+.body > .root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* layout */
+/* layout : header */
+.root > header {
+  width: 100% !important;
+  height: 50px;
+  background: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.root > header h1,
+.root > header a {
+  font-size: 15px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.root > header h1 {
+  width: 150px;
+}
+.root > header ul {
+  width: 100px;
+}
+.root > header ul li {
+  width: 100%;
+}
+
+/* layout : content-wrap */
+
+.root > .content-wrap {
+  width: 100%;
+  height: calc(100% - 50px);
+  position: absolute;
+  top: 50px;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.content-wrap > footer {
+  width: 100%;
+  height: 30px;
+  background: #7c7c7c;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
