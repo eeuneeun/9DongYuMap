@@ -1,9 +1,13 @@
+"use client";
+import { signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 
 type Props = {};
 
 function Gnb({}: Props) {
+  function login() {}
+
   return (
     <header>
       <h1>
@@ -12,7 +16,7 @@ function Gnb({}: Props) {
 
       <ul>
         <li>
-          <Link href="/auth">로그인</Link>
+          <Link href="/auth/signin">로그인</Link>
         </li>
         {/* <li>
           <Link href="/settings">마이페이지</Link>

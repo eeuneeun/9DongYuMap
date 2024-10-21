@@ -5,7 +5,7 @@ import Gnb from "./_components/layout/gnb";
 import localFont from "next/font/local";
 import "../src/css/globals.css";
 import Footer from "./_components/layout/footer";
-import { SessionProvider } from "next-auth/react";
+import AuthProviders from "./_lib/HOC/Provider";
 
 const geistSans = localFont({
   src: "../src/fonts/GeistVF.woff",
@@ -31,13 +31,15 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${geistSans.variable} ${geistMono.variable} body`}>
-        <div className="root">
-          <Gnb />
-          <div className="content-wrap">
-            {children}
-            <Footer />
+        <AuthProviders>
+          <div className="root">
+            <Gnb />
+            <div className="content-wrap">
+              {children}
+              <Footer />
+            </div>
           </div>
-        </div>
+        </AuthProviders>
       </body>
     </html>
   );
