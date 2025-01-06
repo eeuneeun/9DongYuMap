@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./_css/globals.css";
 import Footer from "./_components/common/footer";
+import Headers from "./_components/common/header";
 
 export const metadata: Metadata = {
   title: "9동여지도",
@@ -15,9 +16,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="wrap body">
-        {children}
-        <Footer />
+      <body className="body">
+        <div className="wrap">
+          <Headers />
+          <main className="common contents">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );
