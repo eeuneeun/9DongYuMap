@@ -62,22 +62,29 @@ a {
 }
 
 .common.header,
-.common.footer {
+.common.footer,
+.common.contents {
   width: 100%;
   position: absolute;
   left: 0;
   right: 0;
-  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .common.header {
   top: 0;
+  height: 50px;
 }
 .common.footer {
   bottom: 0;
+  height: 20px;
 }
 
 .common.contents {
+  height: calc(100% - 50px);
   padding: 0 20px;
+  top: 50px;
   overflow-x: hidden;
   overflow-y: auto;
 }
