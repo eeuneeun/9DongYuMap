@@ -35,6 +35,11 @@ a {
   text-decoration: none;
 }
 
+/* PREFIX CLASS */
+.display-none {
+  display: none !important;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -74,17 +79,109 @@ a {
 }
 .common.header {
   top: 0;
-  height: 50px;
+  height: 60px;
 }
+
+.common.header h1 {
+  font-size: 18px;
+}
+
+.common.header .auth,
+.common.header .user {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-top: -20px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.common.header .auth a,
+.common.header .user a {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50%;
+}
+
 .common.footer {
   bottom: 0;
   height: 20px;
 }
 
 .common.contents {
-  height: calc(100% - 50px);
+  height: calc(100% - 60px);
   padding: 0 20px;
-  top: 50px;
+  top: 60px;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+.bottom-nav {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* SIGNIN */
+.signin-form {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.signin-form label {
+  width: 100%;
+  height: 40px;
+}
+.signin-form label span {
+  display: inline-block;
+  width: 100px;
+}
+.signin-form label input {
+  width: calc(100% - 100px);
+  height: 100%;
+  border: 1px solid #cacaca;
+  border-radius: 5px;
+}
+
+.signin-form .btn-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.signin-form .btn-group button,
+.signin-btn,
+.signup-btn {
+  width: 150px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2ababa;
+  color: #fff;
+  border: 0;
+  opacity: 60%;
+}
+.signin-form .btn-group button:hover,
+.signin-btn,
+.signup-btn {
+  opacity: 100%;
+}
+
+.signin-form .btn-group .signup-btn,
+.signup-btn {
+  background-color: #54b897;
+}
+
+.signin-form .btn-group .find-btn {
+  background-color: cadetblue;
 }

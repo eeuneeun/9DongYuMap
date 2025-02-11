@@ -3,20 +3,26 @@ import { signIn } from "@/app/auth";
 export function SignIn() {
   return (
     <form
+      className="signin-form"
       action={async (formData) => {
         "use server";
         await signIn("credentials", formData);
       }}
     >
       <label>
-        Email
+        <span>E-MAIL</span>
         <input name="email" type="email" />
       </label>
       <label>
-        Password
+        <span>PASSWORD</span>
         <input name="password" type="password" />
       </label>
-      <button>Sign In</button>
+
+      <div className="btn-group">
+        <button className="signin-btn">SIGN IN</button>
+        <button className="signup-btn">SIGN UP</button>
+        <button className="find-btn">FIND ACCOUNT</button>
+      </div>
     </form>
   );
 }

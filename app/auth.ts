@@ -1,11 +1,10 @@
 import NextAuth from "next-auth";
-import { ZodError } from "zod";
 import Credentials from "next-auth/providers/credentials";
-import { signInSchema } from "./_lib/authZod";
 // Your own logic for dealing with plaintext password strings; be careful!
 import saltAndHashPassword from "./_utils/password";
 import getUserFromDb from "./_utils/db";
-export const { handlers, auth } = NextAuth({
+
+export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Credentials({
       // You can specify which fields should be submitted, by adding keys to the `credentials` object.
@@ -15,31 +14,23 @@ export const { handlers, auth } = NextAuth({
         password: {},
       },
       authorize: async (credentials) => {
-        try {
-          let user = null;
+        let user = null;
 
-          const { email, password } = await signInSchema.parseAsync(
-            credentials
-          );
+        // logic to salt and hash password
+        const pwHash = saltAndHashPassword(credentials.password);
 
-          // logic to salt and hash password
-          const pwHash = saltAndHashPassword(password);
+        // logic to verify if the user exists
+        user = await getUserFromDb(credentials.email, pwHash);
 
-          // logic to verify if the user exists
-          user = await getUserFromDb(email, pwHash);
-
-          if (!user) {
-            throw new Error("Invalid credentials.");
-          }
-
-          // return JSON object with the user data
-          return user;
-        } catch (error) {
-          if (error instanceof ZodError) {
-            // Return `null` to indicate that the credentials are invalid
-            return null;
-          }
+        if (!user) {
+          // No user found, so this is their first attempt to login
+          // Optionally, this is also the place you could do a user registration
+          alert("일치하는 회원 정보가 없습니다!");
+          throw new Error("Invalid credentials.");
         }
+
+        console.log(user);
+        return user;
       },
     }),
   ],
